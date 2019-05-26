@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div id="main">
+<!-- because we included this element in the Vue object, we can do Vue things here -->
+
+<!-- <p>2 + 2 = {{ 2 + 2 }}</p>
+
+We are using the name variable from Vue element in script.js -->
+<!-- <h1>Welcome to my site, {{ name }}</h1>
+
+ we have to loop through our cuteAnimals array -->
+<!-- <ul>
+    <li v-for='{animal, index} in cuteAnimals'
+        v-if='index === 2'
+        >{{animal.name}}, {{animal.cuteness}}</li>
+</ul>
+ -->
+
+
+<p>{{cities[0].name}}</p>
+
+<form class="" action="index.html" method="post">
+    <!-- the v-model field needs to have the same name as in the script.js object ('form', in this case) -->
+    <!-- then . with the property of the object in script.js, in this case 'title' -->
+    <input v-model='form.title' type="title" name="" value="" placeholder="title">
+    <input v-model='form.description' type="description" name="" value="" placeholder="image description">
+    <input v-model='form.name' type="username" name="" value="" placeholder="enter your username">
+    <!-- @change is for listening to the change event in this field (short form of 'v-on') -->
+    <input type="file" name="file" value="" accept="image/*" @change='handleFileChange'>
+    <!-- the view way of preventing default -->
+    <!-- <button @click.prevent.default='uploadFile'>Upload</button> -->
+    <button @click.prevent.default='uploadFile'>Upload</button>
+</form>
+
+
+
+
+<!-- i insert the modal component as a new tag, where i want it to be -->
+<!-- <cute-animal-modal></cute-animal-modal> -->
+<!-- this is how the component has access to the vue "name" property -->
+<!-- v-if="someCondition" -->
+<cute-animal-modal
+        :name="name"
+        :animal-that-was-clicked="animalThatWasClicked"
+        v-if="animalThatWasClicked.length > 0"
+></cute-animal-modal>
+</div>
+<!-- main div closes above -->
+
+<!-- elements for the view component -->
+<script id="cute-animal-template" type="text/x-template">
+
+<div class="cute-animal-container">
+    <h1> this is a cute animal, {{ animalName }}!</h1>
+    <!-- "name" coming from Vue instance -->
+    <p> {{ name }} </p>
+</div>
+
+</script>
+
+
+    <script src="/js/vue.js"></script>
+    <script src="/js/axios.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>

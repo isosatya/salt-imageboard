@@ -1,10 +1,103 @@
-<!doctype html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Images Board</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+        <div id="main">
+            <!-- The modal component needs to be included in the html, wherever it is needs to be rendered. The name of
+            the element tag, is the same as the modal component name.
+            Inside the element tag, the needed variables need to be called. Otherwise, they cannot be linked to the html.
+            The name on the left does not matter, but the name on the right is the one from the Vue properties
+            The "-" is ussed instead of camel writting. Inside the Tag, the ":" is put in front of the variable.
+            But if the varialbe is called outside the element tag, then {{}} is used and the properties are called directly -->
+            <!-- Only if this "if" is fulfilled, the modal component will be rendered -->
+            <popup-pictures
+                    :picture-url="pictureUrl"
+                    :picture-title="pictureTitle"
+                    :picture-username="pictureUsername"
+                    :picture-desc="pictureDesc"
+                    :picture-date="pictureDate"
+                    :picture-id="pictureId"
+
+                    v-if="popup === 1"
+            ></popup-pictures>
+            <!-- Either "v-on" or just "@" can be used to add event listeners. The "prevent.default" is used so the
+            form does not actually try to render the post route.
+            The "form" element does not need any "action" of "method" values -->
+            <!-- The "v-model" property need the actual name of the Vue object property (i.e. "form.title") -->
+            <form>
+                <input v-model='form.title' name="title" type="text" value="" placeholder="Title" required>
+                <input v-model='form.description' name="description" type="text" value="" placeholder="Image Description">
+                <input v-model='form.username' name="username" type="text" value="" placeholder="Enter your Username" required>
+                <input type="file" name="file" value="" accept="image/*" @change='handleFileChange'>
+                <button @click.prevent.default='uploadFile'>Upload</button>
+            </form>
+
+
+            <h1></h1>
+            <!-- "v-for" is like a for loop that itirates through the "images" objecct -->
+            <div v-for='image in images' class="card">
+                <!-- The togglePictureModal function is run based on the click event. The arguments
+                are the properties of the element on which it was clicked, itself -->
+                <img  :src="image.url" @click="togglePictureModal(image.url, image.title, image.username, image.description, image.created_at, image.id)">
+                <div class="title">
+                    <h2>{{image.title}}</h2>
+                </div>
+
+            </div>
+
+            <!-- i insert the modal component as a new tag, where i want it to be -->
+            <!-- <cute-animal-modal></cute-animal-modal> -->
+            <!-- this is how the component has access to the vue "name" property -->
+            <!-- v-if="someCondition" -->
+                <!-- v-if="animalThatWasClicked.length > 0" -->
+            <h3></h3>
+            <p></p>
+
+
+
+        </div>
+        <!-- main div closes above -->
+
+        <!-- *********************                 elements for the view component               ***************** -->
+        <!-- Type of the script is very important -->
+        <script id="pictures-template" type="text/x-template">
+            <div class="overlay">
+                    <div class="popup-container">
+                            <p id="popup-close" @click="popup = 0">X</p>
+                            <img :src="pictureUrl">
+                            <p> {{ pictureTitle }} </p>
+                            <p>Uploaded by {{ pictureUsername }} on {{pictureDate}} </p>
+                            <p> {{ pictureDesc }} </p>
+
+
+                        <div class="">
+
+                            <form>
+                                <input v-model='formComments.username' type="text" name="username" value="" placeholder="Username" required>
+                                <input v-model='formComments.comment' type="text" name="comment" value="" placeholder="Insert Comment" required>
+
+                                <button @click.prevent.default='submitComment'>Submit</button>
+
+                            </form>
+                        </div>
+
+
+                        <div v-for='comment in pictureComments' class="comments">
+                            <p> {{comment.comment}} </p>
+                            <h3> {{comment.username}} on {{comment.created_at}}</h3>
+                        </div>
+                    </div>
+            </div>
+        </script>
+
+    </body>
+    <!-- These need to be added in this order, for Vue to work -->
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
-</body>
+    <script src="/js/script.js"></script>
 </html>

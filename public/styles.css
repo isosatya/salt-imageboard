@@ -1,0 +1,74 @@
+body {
+    /* overflow: hidden; */
+}
+
+img {
+    height: auto;
+    width: 250px;
+}
+
+.card {
+    border: solid red 5px;
+}
+
+.imgrender {
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+}
+
+.overlay {
+    margin: 0;
+    position: fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+    background-size: 100%;
+    height: 100vh;
+    width: 100vw;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+}
+
+.overlay img {
+    margin: 15px;
+    height: auto;
+    width: 400px;
+}
+
+.overlay p {
+    margin: 0;
+    margin-top: 10px;
+    font-family: verdana, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.popup-container {
+    width: 700px;
+    height: auto;
+    border-radius: 20px;
+    border: 5px solid #5ca0d3;
+    background: #5ca0d3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#popup-close {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: arial, sans-serif;
+    font-size: 20px;
+    align-self: flex-end;
+}
+
+.comments {
+    background: #c8e6f5;
+    width: 85%;
+    height: auto;
+    margin-top: 15px;
+    border-radius: 10px;
+    font-family: arial;
+}
