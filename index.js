@@ -89,7 +89,7 @@ app.post("/image-comment/", (req, res) => {
 
     db.addComments(pictureid, username, comment)
         .then(results => {
-            console.log("results.rows", results.rows);
+            res.json(results.rows);
         })
         .catch(err => console.log("Error at the addComments query", err));
 });

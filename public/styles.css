@@ -1,30 +1,89 @@
 body {
     /* overflow: hidden; */
+    background: #f2eee0;
+    margin: 0;
 }
 
 img {
     height: auto;
-    width: 250px;
+    width: 230px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+/*++++++++++++++++++++++++++++++++++ File upload area +++++++++++++++++++++++++++++++++++++++++++++++*/
+.uploadfile {
+    margin: 0;
+    width: 100vw;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #6d3939;
+}
+
+.inputfield {
+    height: 20px;
+    width: 150px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background: #c8e6f5;
+}
+
+#buttonfile {
+    margin-left: 30px;
+    width: 290px;
+    height: 30px;
+    font-family: arial;
+}
+
+#buttonupload {
+    width: 100px;
+    font-weight: bold;
+    font-family: arial;
+    height: 25px;
+}
+/* ++++++++++++++++++++++++++++++++++++++++images area ++++++++++++++++++++++++++++++++++++++++++++++ */
+#picdescription {
+    width: 800px;
+    margin-bottom: 0;
+}
+
+.cardscontainer {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {
-    border: solid red 5px;
+    border: solid #5ca0d3 5px;
+    border-radius: 15px;
+    background: #5ca0d3;
+    width: 300px;
+    height: 450px;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .imgrender {
 }
 
-.title {
-    display: flex;
-    flex-direction: row;
+.title h2 {
+    font-size: 20px;
+    font-family: "Andale Mono";
+    padding: 10px;
+    font-weight: normal;
+    text-align: center;
 }
-
+/* +++++++++++++++++++++++++++++++++ popup area +++++++++++++++++++++++++++++++++++++++++++++++++ */
 .overlay {
     margin: 0;
-    position: fixed;
+    position: absolute;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
     background-size: 100%;
-    height: 100vh;
+    height: auto;
     width: 100vw;
     z-index: 50;
     display: flex;
@@ -56,6 +115,33 @@ img {
     align-items: center;
 }
 
+.picinfo {
+    width: 85%;
+    height: 100px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#pictitle {
+    text-align: center;
+    font-family: "Andale Mono";
+    font-size: 19px;
+}
+
+#picdesc {
+    text-align: left;
+    font-family: "Andale Mono";
+    font-size: 14px;
+    padding: 15px;
+}
+
+#uploadedby {
+    text-align: right;
+    font-family: "Andale Mono";
+    font-size: 8px;
+    font-style: oblique;
+}
+
 #popup-close {
     margin-left: 10px;
     margin-right: 10px;
@@ -64,6 +150,22 @@ img {
     align-self: flex-end;
 }
 
+.insertcomment {
+    width: 85%;
+    height: 100px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.usernamecomment {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    font-style: bold;
+}
 .comments {
     background: #c8e6f5;
     width: 85%;

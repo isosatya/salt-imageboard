@@ -16,7 +16,8 @@
             "pictureTitle",
             "pictureUsername",
             "pictureDesc",
-            "pictureDate"
+            "pictureDate",
+            "popup"
         ],
         //// definition of the data native to the modal component, to which the modal component have access
         //// scope is only within the componenet, so if the parent Vue object needs it, it needs to be emmited ($emit)
@@ -24,8 +25,10 @@
             //// this is a function which returns an object
             //// unlike the main Vue object, here we need a function with a "return" statement
             return {
+                //// "pictureComments" is the placeholder which will receive the array element with all the
+                //// comments rendered from the sql database
                 pictureComments: "",
-                /// Form object that needs to be matched to its html element, and which contains the comments information
+                //// Form object that needs to be matched to its html element, and which contains the comments information
                 formComments: {
                     username: "",
                     comment: "",
@@ -64,16 +67,34 @@
         methods: {
             //// appending the comment Form information as part of a new FormData object
             submitComment: function() {
-                var formData = new FormData();
-                formData.append("username", this.formComments.username);
-                formData.append("comment", this.formComments.comment);
-                //// the formData object, with the comments info is submitted to the backend
-                axios
-                    .post("/image-comment/", this.formComments)
-                    .then(function(resp) {
-                        // console.log("resp in POST / upload", resp);
-                        // console.log("response data", resp.data);
-                    });
+                //// here we dont need a new formData object, because there is no file upload involved
+                if (formFields.username && formFields.comment != "") {
+                    var formFields = this.formComments;
+                    var comment = this.pictureComments;
+                    axios
+                        .post("/image-comment/", this.formComments)
+                        .then(function(resp) {
+                            comment.unshift({
+                                comment: resp.data[0].comment,
+                                created_at: resp.data[0].created_at,
+                                username: resp.data[0].username
+                            });
+                            formFields.username = null;
+                            formFields.comment = null;
+                        })
+                        .catch(function(err) {
+                            console.log(
+                                "Error at the post /image-comment/ route",
+                                err
+                            );
+                        });
+                } else {
+                    window.alert("Please fill in both fields");
+                }
+            },
+            //// this function emits the "0" value when its clicked on the event listener in the html
+            closePopup: function() {
+                this.$emit("close-popup", 0);
             }
         } //closes methods
     });
@@ -168,6 +189,12 @@
                     //// picture url, to the beginning of the main Vue obj. images element (which is an array)
                     repository.unshift({ url: resp.data.url });
                 });
+            },
+            //// this is the function executed based on the custom event listener defined in the modal component
+            //// to which it is listened to in the parent object. The "updatePopUp" argument is the "$event" argument
+            //// which is actually the value emmited by the custom defined event
+            updatePopUp: function(updatedPopUp) {
+                this.popup = updatedPopUp;
             }
         } //closes methods
     });

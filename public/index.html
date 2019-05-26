@@ -15,6 +15,11 @@
             The "-" is ussed instead of camel writting. Inside the Tag, the ":" is put in front of the variable.
             But if the varialbe is called outside the element tag, then {{}} is used and the properties are called directly -->
             <!-- Only if this "if" is fulfilled, the modal component will be rendered -->
+            <!-- The @close-popup is the custom event coming from the child modal component, which emits the value
+            for the primitive variable from the main Vue object
+            The "updatePopUp" is the method defined in the main Vue object which will actually change the value
+            of the primitive variable originally defined in the main Vue object. The argument "$event" is the value
+            emmited by the custom "close-popup" event from the child modal component -->
             <popup-pictures
                     :picture-url="pictureUrl"
                     :picture-title="pictureTitle"
@@ -22,33 +27,42 @@
                     :picture-desc="pictureDesc"
                     :picture-date="pictureDate"
                     :picture-id="pictureId"
-
+                    @close-popup= "updatePopUp($event)"
                     v-if="popup === 1"
             ></popup-pictures>
             <!-- Either "v-on" or just "@" can be used to add event listeners. The "prevent.default" is used so the
             form does not actually try to render the post route.
             The "form" element does not need any "action" of "method" values -->
             <!-- The "v-model" property need the actual name of the Vue object property (i.e. "form.title") -->
-            <form>
-                <input v-model='form.title' name="title" type="text" value="" placeholder="Title" required>
-                <input v-model='form.description' name="description" type="text" value="" placeholder="Image Description">
-                <input v-model='form.username' name="username" type="text" value="" placeholder="Enter your Username" required>
-                <input type="file" name="file" value="" accept="image/*" @change='handleFileChange'>
-                <button @click.prevent.default='uploadFile'>Upload</button>
-            </form>
-
-
-            <h1></h1>
-            <!-- "v-for" is like a for loop that itirates through the "images" objecct -->
-            <div v-for='image in images' class="card">
-                <!-- The togglePictureModal function is run based on the click event. The arguments
-                are the properties of the element on which it was clicked, itself -->
-                <img  :src="image.url" @click="togglePictureModal(image.url, image.title, image.username, image.description, image.created_at, image.id)">
-                <div class="title">
-                    <h2>{{image.title}}</h2>
-                </div>
-
+            <div class="uploadfile">
+                <form class="">
+                    <div class="">
+                        <input v-model='form.title' name="title" type="text" class="inputfield" placeholder="Title" required>
+                        <input v-model='form.username' name="username" type="text" class="inputfield" placeholder="Enter your Username" required>
+                        <input id="buttonfile" type="file" name="file" value="" accept="image/*" @change='handleFileChange'>
+                        <button id="buttonupload" @click.prevent.default='uploadFile'>Upload</button>
+                    </div>
+                    <div class="">
+                        <input id="picdescription" v-model='form.description' name="description" type="text" class="inputfield" placeholder="Image Description" size="100">
+                    </div>
+                </form>
             </div>
+
+
+
+
+            <div class="cardscontainer">
+                <!-- "v-for" is like a for loop that itirates through the "images" objecct -->
+                <div v-for='image in images' class="card">
+                    <!-- The togglePictureModal function is run based on the click event. The arguments
+                    are the properties of the element on which it was clicked, itself -->
+                    <img  :src="image.url" @click="togglePictureModal(image.url, image.title, image.username, image.description, image.created_at, image.id)">
+                    <div class="title">
+                        <h2>{{image.title}}</h2>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- i insert the modal component as a new tag, where i want it to be -->
             <!-- <cute-animal-modal></cute-animal-modal> -->
@@ -65,26 +79,31 @@
 
         <!-- *********************                 elements for the view component               ***************** -->
         <!-- Type of the script is very important -->
+        <!-- The click event executes "closePopup" function which emits the value needed for changing the
+        value of the primitive variable property in the root Vue object -->
         <script id="pictures-template" type="text/x-template">
             <div class="overlay">
                     <div class="popup-container">
-                            <p id="popup-close" @click="popup = 0">X</p>
+                            <p id="popup-close" @click="closePopup">X</p>
                             <img :src="pictureUrl">
-                            <p> {{ pictureTitle }} </p>
-                            <p>Uploaded by {{ pictureUsername }} on {{pictureDate}} </p>
-                            <p> {{ pictureDesc }} </p>
+                            <div class="picinfo">
+                                <p id="pictitle"> {{ pictureTitle }} </p>
+                                <p id="picdesc"> {{ pictureDesc }} </p>
+                                <p id="uploadedby">Uploaded by {{ pictureUsername }} on {{pictureDate}} </p>
+                            </div>
 
 
-                        <div class="">
 
-                            <form>
-                                <input v-model='formComments.username' type="text" name="username" value="" placeholder="Username" required>
-                                <input v-model='formComments.comment' type="text" name="comment" value="" placeholder="Insert Comment" required>
 
-                                <button @click.prevent.default='submitComment'>Submit</button>
+                            <form class="insertcomment">
+                                <div class="usernamecomment">
+                                    <input v-model='formComments.username' type="text" name="username" value="" placeholder="Username" required>
+                                    <button @click.prevent.default='submitComment' style='width: 100px; height:25px;'>Submit</button>
+                                </div>
 
+                                <input v-model='formComments.comment' type="text" name="comment" style="height:25px;" placeholder="Insert Comment" required>
                             </form>
-                        </div>
+
 
 
                         <div v-for='comment in pictureComments' class="comments">
