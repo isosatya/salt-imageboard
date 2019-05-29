@@ -49,7 +49,7 @@
                         self.imageinfo = resp.data[0][0];
                         console.log("self.imageinfo", self.imageinfo);
                         if (self.imageinfo.tags != "") {
-                            self.tags = self.imageinfo.tags.split(",");
+                            self.tags = self.imageinfo.tags.split(", ");
                         }
                         self.pictureComments = resp.data[1];
                     })
@@ -87,7 +87,7 @@
                     self.imageinfo = resp.data[0][0];
                     console.log("infor about the image", self.imageinfo);
                     if (self.imageinfo.tags != "") {
-                        self.tags = self.imageinfo.tags.split(",");
+                        self.tags = self.imageinfo.tags.split(", ");
                     }
                     self.pictureComments = resp.data[1];
                 })
@@ -134,7 +134,7 @@
         } //closes methods
     });
 
-    ////////////////////////////////////////////////////// Parent Vue Object
+    /////////////////////////////////////////////////////////////// Parent Vue Object
     new Vue({
         //// the html element to which the Vue object applies
         el: "#main",
@@ -147,7 +147,7 @@
             pictureId: location.hash.slice(1),
 
             //// property declared as a value (number)
-            popup: 0,
+
             //// Form object, which needs to be matched to its html elements and contains the information to be
             //// submitted to the backend
             form: {
@@ -262,6 +262,20 @@
                 this.pictureId = "";
             },
 
+            getTaggedImg: function(tag) {
+                const self = this;
+                axios
+                    .get("/tagged-images/" + tag)
+                    .then(function(resp) {
+                        console.log("resp.data for tagged images", resp.data);
+                        self.images = resp.data;
+                        self.pictureId = "";
+                    })
+                    .catch(function(err) {
+                        console.log("Error at the getTaggedImg functions", err);
+                    });
+            },
+
             morePics: function() {
                 var repository = this.images;
                 var self = this;
@@ -271,6 +285,7 @@
                         //// pushing the elements inside the array, which contains the rest of the Images
                         //// obtained through the getMoreImages db query
                         repository.push(...resp.data);
+
                         //// updating the index of the last picture rendered
                         self.latestPicId = repository[repository.length - 1].id;
                         //// updating the variable which stores the index of the first entry of the

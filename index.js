@@ -93,8 +93,6 @@ app.get("/image-info/:pictureId", (req, res) => {
     // console.log("pictureid", pictureId);
     db.getSpecificImage(pictureId)
         .then(results => {
-            console.log("results of getSpecificImage", results.rows);
-
             if (results.rows.length != 0) {
                 db.viewComments(results.rows[0].id)
                     .then(comments => {
@@ -117,6 +115,17 @@ app.get("/image-info/:pictureId", (req, res) => {
     // .catch(err =>
     //     console.log("Error at the getImageAndComments query", err)
     // );
+});
+
+app.get("/tagged-images/:tag", (req, res) => {
+    const tag = req.params.tag;
+    console.log("req.params.tag", tag);
+    db.getImagesWithTag(tag)
+        .then(results => {
+            console.log("results.rows for tagged pics", results.rows);
+            res.json(results.rows);
+        })
+        .catch(err => console.log("Error at the getImagesWithTag query", err));
 });
 
 app.post("/image-comment/", (req, res) => {

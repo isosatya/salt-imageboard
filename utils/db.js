@@ -105,3 +105,13 @@ module.exports.getImageAndComments = function getImageAndComments(id) {
         [id]
     );
 };
+
+module.exports.getImagesWithTag = function getImagesWithTag(tag) {
+    return db.query(
+        `
+        SELECT * FROM images
+        WHERE POSITION ($1 IN tags) > 0
+        ORDER BY id DESC`,
+        [tag]
+    );
+};

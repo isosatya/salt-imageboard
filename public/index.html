@@ -23,6 +23,7 @@
             <popup-pictures
                     :picture-id="pictureId"
                     @close-popup= "updatePopUp"
+                    @pictures-tag= "getTaggedImg($event)"
                     v-if="pictureId > 0"
 
             ></popup-pictures>
@@ -105,7 +106,8 @@
 
                             <div class="tags">
                                 <div v-if='imageinfo.tags.length != 0' v-for='tag in tags' >
-                                    <a  :href='tag'> {{ tag }} </a>
+                                    <a  @click='$emit("pictures-tag", tag)'> {{ tag }} </a>
+                                    <!-- <a  :href='"#" + tag'> {{ tag }} </a> -->
                                 </div>
                             </div>
 
