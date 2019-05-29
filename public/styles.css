@@ -1,7 +1,7 @@
 body {
     /* overflow: hidden; */
-    background: #f2eee0;
     margin: 0;
+    background: #fff3a3;
 }
 
 img {
@@ -10,6 +10,30 @@ img {
     border-radius: 10px;
     margin-top: 10px;
 }
+
+#main {
+}
+
+.pagetitle h1 {
+    font-family: "Arial Rounded MT Bold";
+    font-size: 40px;
+    font-style: oblique;
+    font-weight: bolder;
+    color: #7572f4;
+    background: #ff7bb0;
+    text-align: center;
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    letter-spacing: 3px;
+    /* font-weight: bolder;
+    font-style: oblique; */
+}
+
+/* yellow -    #fff3a3
+light pink -    #ff7bb0
+pink -  #ff3e6d
+violet -    #7572f4        */
 /*++++++++++++++++++++++++++++++++++ File upload area +++++++++++++++++++++++++++++++++++++++++++++++*/
 .uploadfile {
     margin: 0;
@@ -18,7 +42,7 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #6d3939;
+    background: #ff3e6d;
 }
 
 .inputfield {
@@ -32,7 +56,7 @@ img {
 
 #buttonfile {
     margin-left: 30px;
-    width: 290px;
+    width: 190px;
     height: 30px;
     font-family: arial;
 }
@@ -42,11 +66,16 @@ img {
     font-weight: bold;
     font-family: arial;
     height: 25px;
+    background: #fff3a3;
+    border: #fff3a3;
 }
 /* ++++++++++++++++++++++++++++++++++++++++images area ++++++++++++++++++++++++++++++++++++++++++++++ */
 #picdescription {
-    width: 800px;
+    width: 900px;
     margin-bottom: 0;
+}
+
+.cardssection {
 }
 
 .cardscontainer {
@@ -56,9 +85,9 @@ img {
 }
 
 .card {
-    border: solid #5ca0d3 5px;
+    border: solid #7572f4 5px;
     border-radius: 15px;
-    background: #5ca0d3;
+    background: #7572f4;
     width: 300px;
     height: 450px;
     margin: 50px;
@@ -67,7 +96,18 @@ img {
     align-items: center;
 }
 
-.imgrender {
+.hvr-glow {
+    /* display: inline-block; */
+    vertical-align: middle;
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 10px 13px 20px 10px rgba(0, 0, 0, 0);
+    transition-duration: 0.5s;
+    transition-property: box-shadow;
+}
+.hvr-glow:hover,
+.hvr-glow:focus,
+.hvr-glow:active {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 .title h2 {
@@ -76,18 +116,93 @@ img {
     padding: 10px;
     font-weight: normal;
     text-align: center;
+    color: #040404;
 }
+
+a:link {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+#morebutton {
+    display: block;
+    height: 30px;
+    width: 150px;
+    background: #ff3e6d;
+    border-radius: 5px;
+    border: 5px solid #ff3e6d;
+    font-weight: bold;
+    font-family: "Andale Mono";
+    position: absolute;
+    left: 42%;
+}
+
 /* +++++++++++++++++++++++++++++++++ popup area +++++++++++++++++++++++++++++++++++++++++++++++++ */
 .overlay {
     margin: 0;
-    position: absolute;
+    overflow-y: scroll;
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
     background-size: 100%;
-    height: auto;
+    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     z-index: 50;
+    display: fixed;
+    justify-content: center;
+}
+
+#hashcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.picandarrows {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+#previouspic {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid #ff3e6d;
+}
+
+#nextpic {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #ff3e6d;
+}
+
+.popup-container {
+    position: absolute;
+    right: 292px;
+    top: 50px;
+    width: 700px;
+    height: auto;
+    border-radius: 20px;
+    border: 5px solid #7572f4;
+    background: #7572f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .overlay img {
@@ -104,22 +219,37 @@ img {
     font-weight: bold;
 }
 
-.popup-container {
-    width: 700px;
-    height: auto;
-    border-radius: 20px;
-    border: 5px solid #5ca0d3;
-    background: #5ca0d3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .picinfo {
     width: 85%;
     height: 100px;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.tags {
+    width: 85%;
+    height: auto;
+    display: inline-flex;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.tags a {
+    border: solid 5px #ff7bb0;
+    background: #ff7bb0;
+    border-radius: 5px;
+    margin: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    height: 50px;
+    width: auto;
+    font-family: "Andale Mono";
+    font-style: oblique;
+    font-size: 20px;
 }
 
 #pictitle {
@@ -149,7 +279,7 @@ img {
     font-size: 20px;
     align-self: flex-end;
 }
-
+/*+++++++++++++++++++++++++++++++++++++++  Comments section ++++++++++++++++++++++++++++++++++++++++++++++++  */
 .insertcomment {
     width: 85%;
     height: 100px;
@@ -170,7 +300,31 @@ img {
     background: #c8e6f5;
     width: 85%;
     height: auto;
+    min-height: 60px;
     margin-top: 15px;
     border-radius: 10px;
     font-family: arial;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.comments h3 {
+    text-align: right;
+    font-family: "Andale Mono";
+    font-size: 8px;
+    font-style: oblique;
+    margin-right: 10px;
+}
+
+.comments p {
+    text-align: left;
+    font-family: "Arial";
+    font-weight: 100;
+    color: #353535;
+    font-style: oblique;
+    font-size: 12px;
+    margin-left: 12px;
+    margin-right: 10px;
+    margin-top: 10px;
 }

@@ -48,12 +48,12 @@ app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
     var title = req.body.title;
     var description = req.body.description;
     var username = req.body.username;
+    var tags = req.body.tags;
 
     // console.log("url", url);
 
-    db.insertImages(url, username, title, description)
+    db.insertImages(url, username, title, description, tags)
         .then(resp => {
-            console.log("image inserted successfully");
             // Sending the response from the backend, back to the frontend. It needs to be in the json format
             // Do not forget to use "rows[0]"
             res.json(resp.rows[0]);
@@ -64,21 +64,59 @@ app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
 //////////////////////////////////////////// DONT TOUCH ANYTHING ABOVE THIS LINE
 
 app.get("/images", (req, res) => {
+    // db.getFirstIndex().then(index =>
+    //     console.log("result of index", index.rows[0].id)
+    // );
     db.getImages()
         .then(results => {
+            // console.log(
+            //     "results.rows at getImages length",
+            //     results.rows[results.rows.length - 1].id
+            // );
             res.json(results.rows);
         })
         .catch(err => console.log("error at the getImages function", err));
 });
 
-app.get("/image-info/:pictureId", (req, res) => {
-    const pictureId = req.params.pictureId;
-    db.viewComments(pictureId)
+app.get("/more-images/:latestPicId", (req, res) => {
+    const latestPicId = req.params.latestPicId;
+    // this db query includes the rest of the images and also te index of the first entry in the images table
+    db.getMoreImages(latestPicId)
         .then(results => {
-            // console.log("response from viewComments", results.rows);
             res.json(results.rows);
         })
-        .catch(err => console.log("Error at the viewComments query", err));
+        .catch(err => console.log("Error at getMoreImages query", err));
+});
+
+app.get("/image-info/:pictureId", (req, res) => {
+    const pictureId = req.params.pictureId;
+    // console.log("pictureid", pictureId);
+    db.getSpecificImage(pictureId)
+        .then(results => {
+            console.log("results of getSpecificImage", results.rows);
+
+            if (results.rows.length != 0) {
+                db.viewComments(results.rows[0].id)
+                    .then(comments => {
+                        // console.log("results for viewComments", comments.rows);
+                        res.json([results.rows, comments.rows]);
+                    })
+                    .catch(err =>
+                        console.log("Error at viewComments query", err)
+                    );
+            } else {
+                res.json(null);
+            }
+        })
+        .catch(err => console.log("Error at getSpecificImage query", err));
+    // db.viewComments(pictureId)
+    // .then(results => {
+    //     console.log("response from getImageAndComments", results.rows);
+    //     res.json(results.rows);
+    // })
+    // .catch(err =>
+    //     console.log("Error at the getImageAndComments query", err)
+    // );
 });
 
 app.post("/image-comment/", (req, res) => {

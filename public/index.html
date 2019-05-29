@@ -21,24 +21,24 @@
             of the primitive variable originally defined in the main Vue object. The argument "$event" is the value
             emmited by the custom "close-popup" event from the child modal component -->
             <popup-pictures
-                    :picture-url="pictureUrl"
-                    :picture-title="pictureTitle"
-                    :picture-username="pictureUsername"
-                    :picture-desc="pictureDesc"
-                    :picture-date="pictureDate"
                     :picture-id="pictureId"
-                    @close-popup= "updatePopUp($event)"
-                    v-if="popup === 1"
+                    @close-popup= "updatePopUp"
+                    v-if="pictureId > 0"
+
             ></popup-pictures>
             <!-- Either "v-on" or just "@" can be used to add event listeners. The "prevent.default" is used so the
             form does not actually try to render the post route.
             The "form" element does not need any "action" of "method" values -->
             <!-- The "v-model" property need the actual name of the Vue object property (i.e. "form.title") -->
+            <div class="pagetitle">
+                <h1>All you need is Code...</h1>
+            </div>
             <div class="uploadfile">
                 <form class="">
                     <div class="">
                         <input v-model='form.title' name="title" type="text" class="inputfield" placeholder="Title" required>
                         <input v-model='form.username' name="username" type="text" class="inputfield" placeholder="Enter your Username" required>
+                        <input v-model='form.tags' name="tags" type="text" class="inputfield" placeholder="Tags (optional)" required>
                         <input id="buttonfile" type="file" name="file" value="" accept="image/*" @change='handleFileChange'>
                         <button id="buttonupload" @click.prevent.default='uploadFile'>Upload</button>
                     </div>
@@ -49,19 +49,23 @@
             </div>
 
 
-
-
             <div class="cardscontainer">
                 <!-- "v-for" is like a for loop that itirates through the "images" objecct -->
-                <div v-for='image in images' class="card">
+                <div v-for='image in images' class="card hvr-glow hvr-glow:hover">
+                    <a :href='"#" + image.id' id="hashcontainer">
                     <!-- The togglePictureModal function is run based on the click event. The arguments
                     are the properties of the element on which it was clicked, itself -->
-                    <img  :src="image.url" @click="togglePictureModal(image.url, image.title, image.username, image.description, image.created_at, image.id)">
-                    <div class="title">
-                        <h2>{{image.title}}</h2>
-                    </div>
+                        <img :src="image.url">
+                        <!-- The click listener has been replaced by the "watcher" function for the url hash change -->
+                        <!-- @click="togglePictureModal(image.url, image.title, image.username, image.description, image.created_at, image.id)" -->
+                        <div class="title">
+                            <h2>{{image.title}}</h2>
+                        </div>
+                    </a>
                 </div>
             </div>
+            <button id="morebutton" v-if='latestPicId != firstPicId' @click='morePics()'>More Pictures</button>
+
 
 
             <!-- i insert the modal component as a new tag, where i want it to be -->
@@ -69,8 +73,8 @@
             <!-- this is how the component has access to the vue "name" property -->
             <!-- v-if="someCondition" -->
                 <!-- v-if="animalThatWasClicked.length > 0" -->
-            <h3></h3>
-            <p></p>
+
+
 
 
 
@@ -83,16 +87,27 @@
         value of the primitive variable property in the root Vue object -->
         <script id="pictures-template" type="text/x-template">
             <div class="overlay">
+
+
                     <div class="popup-container">
                             <p id="popup-close" @click="closePopup">X</p>
-                            <img :src="pictureUrl">
-                            <div class="picinfo">
-                                <p id="pictitle"> {{ pictureTitle }} </p>
-                                <p id="picdesc"> {{ pictureDesc }} </p>
-                                <p id="uploadedby">Uploaded by {{ pictureUsername }} on {{pictureDate}} </p>
+                            <div class="picandarrows">
+                                <a :href='"#" + imageinfo.previousid' id="previouspic"></a>
+                                <img :src="imageinfo.url">
+                                <a :href='"#" + imageinfo.nextid' id="nextpic"></a>
                             </div>
 
+                            <div class="picinfo">
+                                <p id="pictitle"> {{ imageinfo.title }} </p>
+                                <p id="picdesc"> {{ imageinfo.desc }} </p>
+                                <p id="uploadedby">Uploaded by {{ imageinfo.username }} on {{ imageinfo.created_at }} </p>
+                            </div>
 
+                            <div class="tags">
+                                <div v-if='imageinfo.tags.length != 0' v-for='tag in tags' >
+                                    <a  :href='tag'> {{ tag }} </a>
+                                </div>
+                            </div>
 
 
                             <form class="insertcomment">
@@ -104,11 +119,9 @@
                                 <input v-model='formComments.comment' type="text" name="comment" style="height:25px;" placeholder="Insert Comment" required>
                             </form>
 
-
-
-                        <div v-for='comment in pictureComments' class="comments">
-                            <p> {{comment.comment}} </p>
-                            <h3> {{comment.username}} on {{comment.created_at}}</h3>
+                        <div v-for='info in pictureComments' class="comments">
+                            <p> {{ info.comment }} </p>
+                            <h3> {{ info.username }} on {{ info.created_at }}</h3>
                         </div>
                     </div>
             </div>
