@@ -1,32 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Spicy+Rice&display=swap");
+
 body {
-    /* overflow: hidden; */
-    margin: 0;
-    background: #fff3a3;
+  /* overflow: hidden; */
+  margin: 0;
+  background: #fff3a3;
 }
 
 img {
-    height: auto;
-    width: 230px;
-    border-radius: 10px;
-    margin-top: 10px;
+  height: auto;
+  width: 230px;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 #main {
 }
 
 .pagetitle h1 {
-    font-family: "Arial Rounded MT Bold";
-    font-size: 40px;
-    font-style: oblique;
-    font-weight: bolder;
-    color: #7572f4;
-    background: #ff7bb0;
-    text-align: center;
-    margin: 0;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    letter-spacing: 4px;
-    /* font-weight: bolder;
+  font-family: "Spicy Rice", cursive;
+  font-size: 50px;
+  font-weight: bolder;
+  color: #5652e0;
+  background: #ff7bb0;
+  text-align: center;
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  letter-spacing: 7px;
+  /* font-weight: bolder;
     font-style: oblique; */
 }
 
@@ -36,295 +37,295 @@ pink -  #ff3e6d
 violet -    #7572f4        */
 /*++++++++++++++++++++++++++++++++++ File upload area +++++++++++++++++++++++++++++++++++++++++++++++*/
 .uploadfile {
-    margin: 0;
-    width: 100vw;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #ff3e6d;
+  margin: 0;
+  width: 100vw;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ff3e6d;
 }
 
 .inputfield {
-    height: 20px;
-    width: 150px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    background: #c8e6f5;
+  height: 20px;
+  width: 150px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background: #c8e6f5;
 }
 
 #buttonfile {
-    margin-left: 30px;
-    width: 190px;
-    height: 30px;
-    font-family: arial;
+  margin-left: 30px;
+  width: 190px;
+  height: 30px;
+  font-family: arial;
 }
 
 #buttonupload {
-    width: 100px;
-    font-weight: bold;
-    font-family: arial;
-    height: 25px;
-    background: #fff3a3;
-    border: #fff3a3;
+  width: 100px;
+  font-weight: bold;
+  font-family: arial;
+  height: 25px;
+  background: #fff3a3;
+  border: #fff3a3;
 }
 /* ++++++++++++++++++++++++++++++++++++++++images area ++++++++++++++++++++++++++++++++++++++++++++++ */
 #picdescription {
-    width: 900px;
-    margin-bottom: 0;
+  width: 900px;
+  margin-bottom: 0;
 }
 
 .cardssection {
 }
 
 .cardscontainer {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
-    border: solid #7572f4 5px;
-    border-radius: 15px;
-    background: #7572f4;
-    width: 300px;
-    height: 450px;
-    margin: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  border: solid #7572f4 5px;
+  border-radius: 15px;
+  background: #7572f4;
+  width: 300px;
+  height: 450px;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hvr-glow {
-    /* display: inline-block; */
-    vertical-align: middle;
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 10px 13px 20px 10px rgba(0, 0, 0, 0);
-    transition-duration: 0.5s;
-    transition-property: box-shadow;
+  /* display: inline-block; */
+  vertical-align: middle;
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 10px 13px 20px 10px rgba(0, 0, 0, 0);
+  transition-duration: 0.5s;
+  transition-property: box-shadow;
 }
 .hvr-glow:hover,
 .hvr-glow:focus,
 .hvr-glow:active {
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 .title h2 {
-    font-size: 20px;
-    font-family: "Andale Mono";
-    padding: 10px;
-    font-weight: normal;
-    text-align: center;
-    color: #040404;
+  font-size: 20px;
+  font-family: "Andale Mono";
+  padding: 10px;
+  font-weight: normal;
+  text-align: center;
+  color: #040404;
 }
 
 a:link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:active {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:visited {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 #morebutton {
-    display: block;
-    height: 30px;
-    width: 150px;
-    background: #ff3e6d;
-    border-radius: 5px;
-    border: 5px solid #ff3e6d;
-    font-weight: bold;
-    font-family: "Andale Mono";
-    position: absolute;
-    left: 42%;
+  display: block;
+  height: 30px;
+  width: 150px;
+  background: #ff3e6d;
+  border-radius: 5px;
+  border: 5px solid #ff3e6d;
+  font-weight: bold;
+  font-family: "Andale Mono";
+  position: absolute;
+  left: 42%;
 }
 
 /* +++++++++++++++++++++++++++++++++ popup area +++++++++++++++++++++++++++++++++++++++++++++++++ */
 .overlay {
-    margin: 0;
-    overflow-y: scroll;
-    position: fixed;
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-    background-size: 100%;
-    height: 100vh;
-    min-height: 100vh;
-    width: 100vw;
-    z-index: 50;
-    display: fixed;
-    justify-content: center;
+  margin: 0;
+  overflow-y: scroll;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  background-size: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  width: 100vw;
+  z-index: 50;
+  display: fixed;
+  justify-content: center;
 }
 
 #hashcontainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .picandarrows {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #previouspic {
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-right: 15px solid #ff3e6d;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid #ff3e6d;
 }
 
 #nextpic {
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-left: 15px solid #ff3e6d;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid #ff3e6d;
 }
 
 .popup-container {
-    position: absolute;
-    right: 292px;
-    top: 50px;
-    width: 700px;
-    height: auto;
-    border-radius: 20px;
-    border: 5px solid #7572f4;
-    background: #7572f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: absolute;
+  right: 292px;
+  top: 50px;
+  width: 700px;
+  height: auto;
+  border-radius: 20px;
+  border: 5px solid #7572f4;
+  background: #7572f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .overlay img {
-    margin: 15px;
-    height: auto;
-    width: 400px;
+  margin: 15px;
+  height: auto;
+  width: 400px;
 }
 
 .overlay p {
-    margin: 0;
-    margin-top: 10px;
-    font-family: verdana, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
+  margin: 0;
+  margin-top: 10px;
+  font-family: verdana, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .picinfo {
-    width: 85%;
-    height: 100px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+  width: 85%;
+  height: 100px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .tags {
-    width: 85%;
-    height: auto;
-    display: inline-flex;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  width: 85%;
+  height: auto;
+  display: inline-flex;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .tags a {
-    border: solid 5px #ff7bb0;
-    background: #ff7bb0;
-    border-radius: 5px;
-    margin: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    height: 50px;
-    width: auto;
-    font-family: "Andale Mono";
-    font-style: oblique;
-    font-size: 20px;
+  border: solid 5px #ff7bb0;
+  background: #ff7bb0;
+  border-radius: 5px;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  height: 50px;
+  width: auto;
+  font-family: "Andale Mono";
+  font-style: oblique;
+  font-size: 20px;
 }
 
 #pictitle {
-    text-align: center;
-    font-family: "Andale Mono";
-    font-size: 19px;
+  text-align: center;
+  font-family: "Andale Mono";
+  font-size: 19px;
 }
 
 #picdesc {
-    text-align: left;
-    font-family: "Andale Mono";
-    font-size: 14px;
-    padding: 15px;
+  text-align: left;
+  font-family: "Andale Mono";
+  font-size: 14px;
+  padding: 15px;
 }
 
 #uploadedby {
-    text-align: right;
-    font-family: "Andale Mono";
-    font-size: 8px;
-    font-style: oblique;
+  text-align: right;
+  font-family: "Andale Mono";
+  font-size: 8px;
+  font-style: oblique;
 }
 
 #popup-close {
-    margin-left: 10px;
-    margin-right: 10px;
-    font-family: arial, sans-serif;
-    font-size: 20px;
-    align-self: flex-end;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: arial, sans-serif;
+  font-size: 20px;
+  align-self: flex-end;
 }
 /*+++++++++++++++++++++++++++++++++++++++  Comments section ++++++++++++++++++++++++++++++++++++++++++++++++  */
 .insertcomment {
-    width: 85%;
-    height: 100px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
+  width: 85%;
+  height: 100px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 .usernamecomment {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 15px;
-    justify-content: space-between;
-    font-style: bold;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  font-style: bold;
 }
 .comments {
-    background: #c8e6f5;
-    width: 85%;
-    height: auto;
-    min-height: 60px;
-    margin-top: 15px;
-    border-radius: 10px;
-    font-family: arial;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background: #c8e6f5;
+  width: 85%;
+  height: auto;
+  min-height: 60px;
+  margin-top: 15px;
+  border-radius: 10px;
+  font-family: arial;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .comments h3 {
-    text-align: right;
-    font-family: "Andale Mono";
-    font-size: 8px;
-    font-style: oblique;
-    margin-right: 10px;
+  text-align: right;
+  font-family: "Andale Mono";
+  font-size: 8px;
+  font-style: oblique;
+  margin-right: 10px;
 }
 
 .comments p {
-    text-align: left;
-    font-family: "Arial";
-    font-weight: 100;
-    color: #353535;
-    font-style: oblique;
-    font-size: 12px;
-    margin-left: 12px;
-    margin-right: 10px;
-    margin-top: 10px;
+  text-align: left;
+  font-family: "Arial";
+  font-weight: 100;
+  color: #353535;
+  font-style: oblique;
+  font-size: 12px;
+  margin-left: 12px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
